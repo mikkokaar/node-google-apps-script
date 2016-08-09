@@ -24,9 +24,13 @@ program
 
 program
   .command('upload')
+  .option('-c, --context <context>',
+    'Set configuration context to pick from gapps.config.json')
   .description('Upload back to an Apps Script project in Google Drive. Run from root of project directory')
   .alias('push')
-  .action(require(commands + '/upload'));
+  .action(function(options){
+    require(commands + '/upload')(options.context);
+  });
 
 program
   .command('init <fileId>')
